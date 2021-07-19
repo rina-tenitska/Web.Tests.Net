@@ -78,13 +78,13 @@ namespace Web.Tests
                 "Clear Allure Results Directory");
         }
 
-        public void name(string value)
-        {
-            AllureLifecycle.Instance.UpdateTestCase(result =>
-            {
-                result.name = value;
-            });
-        }
+        //public void name(string value)
+        //{
+        //   AllureLifecycle.Instance.UpdateTestCase(result =>
+        //    {
+        //        result.name = value;
+        //    });
+        //}
 
     }
 }
