@@ -33,6 +33,7 @@ namespace Web.Tests
         }
 
         [Test]
+        [Ignore("Ignore this test")]
         public void EcosiaFailure()
         {
             Www.ecosia.Open();
