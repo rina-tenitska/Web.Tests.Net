@@ -9,10 +9,15 @@ using OpenQA.Selenium.Remote;
 using Web.Tests.Common.Selenium.Remote;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
+using Allure.Commons;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 
 namespace Web.Tests
 {
     [Parallelizable(ParallelScope.All)]
+    [AllureNUnit(true)]
+    [AllureParentSuite("Root Suite")]
     public class BrowserTest
     {
         protected ProjectSettings Settings { get; set;}
@@ -66,5 +71,20 @@ namespace Web.Tests
 
             Selene.GetWebDriver().Quit();
         }
+
+        public void CleanupResultDirectory()
+        {
+            AllureExtensions.WrapSetUpTearDownParams(() => { AllureLifecycle.Instance.CleanupResultDirectory(); },
+                "Clear Allure Results Directory");
+        }
+
+        public void name(string value)
+        {
+            AllureLifecycle.Instance.UpdateTestCase(result =>
+            {
+                result.name = value;
+            });
+        }
+
     }
 }
