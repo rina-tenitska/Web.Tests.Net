@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text.Json;
 using NUnit.Engine;
 
-namespace allure_nunit.tests
+namespace Web.Tests
 {
     public class AllureRunner
     {
