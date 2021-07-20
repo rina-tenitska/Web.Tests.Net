@@ -7,7 +7,7 @@ namespace Web.Tests
     public class DuckduckgoTest : BrowserTest
     {
         [Test]
-        public void Duckduckgo()
+        public void DuckduckgoSearchTest()
         {
             Www.duckduckgo.Open();
 
