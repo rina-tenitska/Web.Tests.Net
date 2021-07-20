@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using NUnit.Engine;
 
-namespace allure_nunit
+namespace Web.Tests
 {
     public class AllureRunner
     {
@@ -28,7 +29,10 @@ namespace allure_nunit
                 {
                     foreach (var testCase in testPlan.Tests)
                     {
-                        builder.AddTest(testCase.Selector);
+                        if (testCase.Status == "Active")
+                        {
+                            builder.AddTest(testCase.Selector);
+                        }
                     }
                 }
                 
@@ -78,5 +82,6 @@ namespace allure_nunit
     {
         public string Id { get; set; }
         public string Selector { get; set; }
+        public string Status { get; set; }
     }
 }

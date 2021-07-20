@@ -7,7 +7,6 @@ namespace Web.Tests
     public class DuckduckgoTest : BrowserTest
     {
         [Test]
-        [AllureSuite("DuckduckgoTest")]
         public void DuckduckgoSearchTest()
         {
             Www.duckduckgo.Open();

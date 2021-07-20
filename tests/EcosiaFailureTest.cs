@@ -7,7 +7,6 @@ namespace Web.Tests
     public class EcosiaFailureTest : BrowserTest
     {
         [Test]
-        [AllureSuite("EcosiaFailure")]
         public void EcosiaFailure()
         {
             Www.ecosia.Open();
