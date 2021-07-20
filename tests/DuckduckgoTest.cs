@@ -1,12 +1,13 @@
 using NUnit.Framework;
 using Web.Tests.Model;
-using NUnit.Allure.Steps;
+using NUnit.Allure.Attributes;
 
 namespace Web.Tests
 {
     public class DuckduckgoTest : BrowserTest
     {
         [Test]
+        [AllureSuite("DuckduckgoTest")]
         public void DuckduckgoSearchTest()
         {
             Www.duckduckgo.Open();
