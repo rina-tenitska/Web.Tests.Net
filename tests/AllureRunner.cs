@@ -27,7 +27,6 @@ namespace Web.Tests
                 var testPlan = getTestPlan();
                 if (testPlan != null)
                 {
-                    Console.WriteLine(testPlan);
                     foreach (var testCase in testPlan.Tests)
                     {
                         if (testCase.Status == "Active")
