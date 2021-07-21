@@ -1,0 +1,113 @@
+{
+  "uuid": "6dd01b80-a6e9-4f1e-b182-2ac30f71030a-tr-0-1005",
+  "historyId": "Web.Tests.EcosiaTest.EcosiaSearchTest",
+  "fullName": "Web.Tests.EcosiaTest.EcosiaSearchTest",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "ParallelWorker#10"
+    },
+    {
+      "name": "host",
+      "value": "DESKTOP-3BCK8HJ"
+    },
+    {
+      "name": "testClass",
+      "value": "Web.Tests.EcosiaTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "EcosiaSearchTest"
+    },
+    {
+      "name": "package",
+      "value": "Web.Tests.EcosiaTest"
+    },
+    {
+      "name": "parentSuite",
+      "value": "Root Suite"
+    }
+  ],
+  "links": [],
+  "name": "EcosiaSearchTest",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "EcosiaSearchTest",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [
+        {
+          "name": "Open",
+          "status": "passed",
+          "statusDetails": {
+            "known": false,
+            "muted": false,
+            "flaky": false
+          },
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1626790559818,
+          "stop": 1626790563218
+        },
+        {
+          "name": "Search `nselene dotnet`",
+          "status": "passed",
+          "statusDetails": {
+            "known": false,
+            "muted": false,
+            "flaky": false
+          },
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1626790563219,
+          "stop": 1626790567395
+        },
+        {
+          "name": "Title should be `yashaka/NSelene`",
+          "status": "passed",
+          "statusDetails": {
+            "known": false,
+            "muted": false,
+            "flaky": false
+          },
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1626790573037,
+          "stop": 1626790573322
+        }
+      ],
+      "attachments": [
+        {
+          "name": "Console Output",
+          "source": "b4dfddb1d7274b3588ee4d67af4e8907-attachment.txt",
+          "type": "text/plain"
+        }
+      ],
+      "parameters": [],
+      "start": 1626790555639,
+      "stop": 1626790573654
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "start": 1626790555638,
+  "stop": 1626790573654
+}

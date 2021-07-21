@@ -1,0 +1,44 @@
+{
+  "uuid": "52cce03d-8b16-4ab0-8ad4-047fd512be34-tc-0-1004",
+  "name": "Web.Tests.EcosiaTest.EcosiaSearchTest",
+  "children": [
+    "6dd01b80-a6e9-4f1e-b182-2ac30f71030a-tr-0-1005"
+  ],
+  "befores": [
+    {
+      "name": "InitDriver",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1626790573647,
+      "stop": 1626790573647
+    }
+  ],
+  "afters": [
+    {
+      "name": "QuitDriver",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1626790573647,
+      "stop": 1626790573647
+    }
+  ],
+  "links": [],
+  "start": 1626790555626,
+  "stop": 1626790573656
+}

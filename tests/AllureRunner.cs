@@ -35,7 +35,7 @@ namespace Web.Tests
                         }
                     }
                 }
-                
+
                 var filter = builder.GetFilter();
                 using (ITestRunner runner = engine.GetRunner(package))
                 {

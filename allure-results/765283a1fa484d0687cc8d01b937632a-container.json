@@ -1,0 +1,44 @@
+{
+  "uuid": "7e91f5b4-1d0b-419d-82f8-b9586c3ca6b9-tc-0-1000",
+  "name": "Web.Tests.DuckduckgoTest.DuckduckgoSearchTest",
+  "children": [
+    "393fb502-f322-4c8d-96eb-15b7216c6508-tr-0-1001"
+  ],
+  "befores": [
+    {
+      "name": "InitDriver",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1626790571975,
+      "stop": 1626790571975
+    }
+  ],
+  "afters": [
+    {
+      "name": "QuitDriver",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1626790571975,
+      "stop": 1626790571975
+    }
+  ],
+  "links": [],
+  "start": 1626790555626,
+  "stop": 1626790572007
+}

@@ -5,6 +5,7 @@
     <Version>0.0.1</Version>
     <IsPackable>false</IsPackable>
     <GenerateProgramFile>false</GenerateProgramFile>
+    <PackageId>Allure.Examples.NUnit</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
