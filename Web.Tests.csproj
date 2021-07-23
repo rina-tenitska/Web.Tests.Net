@@ -22,7 +22,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <PackageReference Include="WebDriverManager" Version="2.9.1" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <None Include="appsettings.json" CopyToOutputDirectory="Always" />
   </ItemGroup>

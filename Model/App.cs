@@ -3,6 +3,7 @@ using Web.Tests.Model.Pages;
 
 namespace Web.Tests.Model
 {
+
     class Www
     {
         public static Duckduckgo duckduckgo = new Duckduckgo();

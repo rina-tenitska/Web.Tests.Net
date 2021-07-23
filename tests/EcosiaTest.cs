@@ -2,8 +2,9 @@ using NUnit.Framework;
 using Web.Tests.Model;
 using NUnit.Allure.Attributes;
 
-namespace Web.Tests
+namespace WebTests
 {
+    [TestFixture]
     public class EcosiaTest : BrowserTest
     {        
         [Test]

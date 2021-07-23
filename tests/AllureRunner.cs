@@ -5,8 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using NUnit.Engine;
+using NUnit.Engine.Runners;
 
-namespace Web.Tests
+namespace WebTests
 {
     public class AllureRunner
     {
@@ -29,21 +30,18 @@ namespace Web.Tests
                 {
                     foreach (var testCase in testPlan.Tests)
                     {
-                        if (testCase.Status == "Active")
-                        {
-                            builder.AddTest(testCase.Selector);
-                        }
+                        builder.AddTest(testCase.Selector);
                     }
                 }
 
                 var filter = builder.GetFilter();
                 using (ITestRunner runner = engine.GetRunner(package))
                 {
-                    runner.Run(listener: null, filter: filter);
+                    var result = runner.Run(listener: null, filter: filter);
                 }
             }
         }
-
+        
         public static TestPlan? getTestPlan()
         {
             var testPlanPath = getTestPlanPath();
@@ -51,25 +49,29 @@ namespace Web.Tests
             {
                 return null;
             }
-
+            
             try
             {
                 var testPlanJson = File.ReadAllText(testPlanPath);
                 
                 var options = new JsonSerializerOptions();
                 options.PropertyNameCaseInsensitive = true;
-                return JsonSerializer.Deserialize<TestPlan>(testPlanJson, options);
+                var plan = JsonSerializer.Deserialize<TestPlan>(testPlanJson.Replace("'", "\""), options);
+                return plan;
             }
+
             catch (Exception e)
             {
                 return null;
             }
         }
-
+        
         public static string? getTestPlanPath()
         {
-            return Environment.GetEnvironmentVariable(TestPlanEnv);
+            var EnvPath = Environment.GetEnvironmentVariable(TestPlanEnv);
+            return EnvPath;
         }
+
     }
 
     public class TestPlan
@@ -82,6 +84,5 @@ namespace Web.Tests
     {
         public string Id { get; set; }
         public string Selector { get; set; }
-        public string Status { get; set; }
     }
 }
