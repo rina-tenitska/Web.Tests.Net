@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
  * The file is named AppSettings.cs for consistency with appsettings.json
  * 
  */
-namespace WebTests
+namespace Web.Tests
 {
     /*
      * We break consistency with AppSettings.cs and appsettings.json

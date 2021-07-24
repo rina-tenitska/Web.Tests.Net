@@ -13,7 +13,7 @@ using Allure.Commons;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 
-namespace WebTests
+namespace Web.Tests
 {
     [Parallelizable(ParallelScope.All)]
     [AllureNUnit(true)]
