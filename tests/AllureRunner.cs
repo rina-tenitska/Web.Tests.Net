@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Xml;
 using NUnit.Engine;
+using NUnit.Engine.Extensibility;
 using NUnit.Engine.Runners;
 
 namespace Web.Tests
@@ -13,6 +15,7 @@ namespace Web.Tests
     {
         public static void Main(string[] args)
         {
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
             var path = Assembly.GetExecutingAssembly().Location;
             var package = new TestPackage(path);
             package.AddSetting("WorkDirectory", Environment.CurrentDirectory);
@@ -30,6 +33,10 @@ namespace Web.Tests
                 using (ITestRunner runner = engine.GetRunner(package))
                 {
                     var result = runner.Run(listener: null, filter: builder.GetFilter());
+                    if (result.OuterXml.Contains("result=\"Failed\""))
+                    {
+                        throw new Exception("One or more tests had failed");
+                    }
                 }
             }
         }
