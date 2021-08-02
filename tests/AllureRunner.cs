@@ -9,6 +9,7 @@ using NUnit.Engine;
 using NUnit.Engine.Extensibility;
 using NUnit.Engine.Runners;
 
+
 namespace Web.Tests
 {
     public class AllureRunner
@@ -32,14 +33,67 @@ namespace Web.Tests
 
                 using (ITestRunner runner = engine.GetRunner(package))
                 {
-                    var result = runner.Run(listener: null, filter: builder.GetFilter());
-                    if (result.OuterXml.Contains("result=\"Failed\""))
+                    var output = runner.Run(listener: null, filter: builder.GetFilter());
+
+                    var overallResult = TestResult.GetOverallResult(output);
+                    var testMessage = TestResult.GetDetails(output);
+                    string errors = TestResult.GetErrors(output);
+                    if (overallResult == "Failed")
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(errors);
+                        Console.WriteLine(testMessage);
+                        Console.ResetColor();
                         throw new Exception("One or more tests had failed");
                     }
+                    else
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(testMessage);
+                        Console.ResetColor();
+
                 }
             }
         }
+    }
+
+    class TestResult
+    {
+        internal static string GetOverallResult(XmlNode output)
+        {
+            var OverallResult = GetAttribute(output, "result");
+            return OverallResult;
+        }
+        public static string GetDetails(XmlNode output)
+        {
+            if (output.Name != "test-run")
+                throw new Exception("The test-run element was not found.");
+
+            var overallResult = GetAttribute(output, "result");
+            var total = GetAttribute(output, "total");
+            var passed = GetAttribute(output, "passed");
+            var failed = GetAttribute(output, "failed");
+            var skipped = GetAttribute(output, "skipped");
+    
+            var testMessage = $"{overallResult}! Total - {total}, Passed - {passed}, Failed - {failed}, Skipped - {skipped}";
+
+            return testMessage;
+        }
+        public static string GetErrors(XmlNode output)
+        {
+            XmlNodeList nodes = output.SelectNodes(".//test-case");
+            List<string> errors = new List<string>();
+            foreach (XmlNode node in nodes)
+            {
+                errors.Add(node.InnerText);
+            }
+
+            return string.Join("\n", errors);
+        }
+        public static string GetAttribute(XmlNode output, string name)
+        {
+            return output.Attributes[name]?.Value;
+        }
+
     }
 
     class TestPlan

@@ -18,7 +18,7 @@ services:
     ports:
       - "4444:4444"
     volumes:
-      - "/home/automician/etc/selenoid:/etc/selenoid/"  # assumed <current-dir> contains etc/selenoid/browsers.json
+      - "$PWD/etc/selenoid:/etc/selenoid/"  # assumed <current-dir> contains etc/selenoid/browsers.json
       - "/var/run/docker.sock:/var/run/docker.sock"
     command: ["-conf", "/etc/selenoid/browsers.json", "-limit", "4"]
 

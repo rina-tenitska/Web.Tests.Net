@@ -11,7 +11,6 @@ namespace Web.Tests
         public void EcosiaFailure()
         {
             Www.ecosia.Open();
-            Assert.Equals(1, 1);
 
             Www.ecosia.Search("nselene dotnet");
             Www.ecosia.Results.ShouldHaveSizeAtLeast(5)
