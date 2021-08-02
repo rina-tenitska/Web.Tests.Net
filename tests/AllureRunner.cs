@@ -40,17 +40,12 @@ namespace Web.Tests
                     string errors = TestResult.GetErrors(output);
                     if (overallResult == "Failed")
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(errors);
-                        Console.WriteLine(testMessage);
-                        Console.ResetColor();
-                        throw new Exception("One or more tests had failed");
+                        throw new Exception($"{errors} \n{testMessage}");    
                     }
                     else
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(testMessage);
-                        Console.ResetColor();
-
+                    Console.ResetColor();
                 }
             }
         }
@@ -88,7 +83,7 @@ namespace Web.Tests
                 errors.Add(node.InnerText);
             }
 
-            return string.Join("\n", errors);
+            return string.Join("\n\n", errors);
         }
         public static string GetAttribute(XmlNode output, string name)
         {
