@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -68,7 +69,7 @@ namespace Web.Tests
             var passed = GetAttribute(output, "passed");
             var failed = GetAttribute(output, "failed");
             var skipped = GetAttribute(output, "skipped");
-            var duration = Math.Round(Convert.ToSingle(GetAttribute(output, "duration").Replace(".", ",")), 2);
+            var duration = Math.Round(Convert.ToSingle(GetAttribute(output, "duration"), new CultureInfo("en-US")), 2);
 
             var testMessage = $"\n{overallResult}! Failed - {failed}, Passed - {passed}, Skipped - {skipped}, Total - {total}, Duration: {duration.ToString()} s";
 
