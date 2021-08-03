@@ -8,6 +8,7 @@ namespace Web.Tests
     public class EcosiaFailureTest : BrowserTest
     {
         [Test]
+        [Category("Test")]
         public void EcosiaFailure()
         {
             Www.ecosia.Open();

@@ -27,10 +27,23 @@ namespace Web.Tests
                 var filterService = engine.Services.GetService<ITestFilterService>();
                 var builder = filterService.GetTestFilterBuilder();
                 
-                TestPlan.readFromEnv()?.Tests.Aggregate(builder, (builder, testCase) => {
-                    builder.AddTest(testCase.Selector); 
-                    return builder;
-                });
+                if (TestPlan.readFromEnv() != null) {
+                    TestPlan.readFromEnv().Tests.Aggregate(builder, (builder, testCase) => {
+                        builder.AddTest(testCase.Selector); 
+                        return builder;
+                    });
+                }
+                else if (args.Length != 0)
+                {
+                    foreach (string arg in args)
+                    {
+                        if (arg.Contains("TestCategory="))
+                        {
+                            var category = arg.Replace("TestCategory=", "cat == ").Replace("|", " or cat == ");
+                            builder.SelectWhere(category);
+                        }
+                    }
+                }
 
                 using (ITestRunner runner = engine.GetRunner(package))
                 {
@@ -46,7 +59,7 @@ namespace Web.Tests
                     else
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(testMessage);
-                    Console.ResetColor();
+                        Console.ResetColor();
                 }
             }
         }
