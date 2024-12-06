@@ -2,13 +2,21 @@ using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using NSelene;
+using static NSelene.Selene;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
-using Web.Tests.Common.Selenium.Remote;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
+using AngleSharp.Text;
+using Web.Tests.Common.Selenium.Remote;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
+using System.Collections;
 
 namespace Web.Tests
 {
@@ -19,18 +27,20 @@ namespace Web.Tests
 
         public BrowserTest()
         {
+            IHostEnvironment env = new HostingEnvironment { 
+                    EnvironmentName = Environment.GetEnvironmentVariable("Context") 
+                    ?? "local" 
+                };
             var configurationRoot = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json",
                     optional: false,
                     reloadOnChange: true
                 )
-                .AddJsonFile($"appsettings.local.json", 
-                    optional: true,
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json",
+                    optional: false,
                     reloadOnChange: true
                 )
-                // .AddJsonFile($"appsettings.{env.EnvironmentName}.json", 
-                //     optional: true)  // TODO
                 .AddEnvironmentVariables()
                 .Build();
 
@@ -40,36 +50,85 @@ namespace Web.Tests
         [SetUp]
         public void InitDriver()
         {
-            NSelene.Configuration.Timeout = this.Settings.NSelene.Timeout;
+            Configuration.BaseUrl = Settings.NSelene.BaseUrl;
+            Configuration.Timeout = Settings.NSelene.Timeout;
+            Configuration.SetValueByJs = Settings.NSelene.SetValueByJs;
+            
 
             IWebDriver webDriver;
-            if (this.Settings.WebDriver.Local == "chrome") 
+
+            if (!Settings.WebDriver.Remote)
             {
-                new DriverManager().SetUpDriver(new ChromeConfig());
-                webDriver = new ChromeDriver();
-            } 
+                if (Settings.WebDriver.BrowserName == "chrome") 
+                {
+                    ChromeOptions options = new ChromeOptions();
+                    if (Settings.WebDriver.Headless) 
+                    {
+                        options.AddArgument("--headless");
+                    }
+                    webDriver = new ChromeDriver(options);
+                }
+                else if (Settings.WebDriver.BrowserName == "firefox")
+                {
+                    FirefoxOptions options = new FirefoxOptions();
+                    if (Settings.WebDriver.Headless)
+                    {
+                        options.AddArgument("--headless");
+                    }
+                    webDriver = new FirefoxDriver(options);
+                }
+                else
+                {
+                    throw new Exception("This browser is not supported");
+                }
+                SetWebDriver(webDriver);
+            }
             else
             {
-                var options = new ChromeOptions()
-                    .AddGlobal("enableVNC",
-                               this.Settings.WebDriver.Remote.enableVNC)
-                    .AddGlobal("enableVideo",
-                               this.Settings.WebDriver.Remote.enableVideo);
+                if (Settings.WebDriver.BrowserName == "chrome") 
+                {
+                    var options = new ChromeOptions()
+                        .AddGlobal("enableVNC",
+                                this.Settings.WebDriver.EnableVNC)
+                        .AddGlobal("enableVideo",
+                                this.Settings.WebDriver.EnableVideo);
 
-                webDriver = new RemoteWebDriver(
-                    new Uri(this.Settings.WebDriver.Remote.uri),
-                    options);
+                    if (Settings.WebDriver.Headless) {
+                        options.AddArgument("--headless");
+                    }
+                    webDriver = new RemoteWebDriver(
+                        new Uri(Settings.WebDriver.RemoteUri),
+                        options);
+                }
+                else if (Settings.WebDriver.BrowserName == "firefox")
+                {
+                    FirefoxOptions  options = new FirefoxOptions()
+                        .AddGlobal("enableVNC",
+                                this.Settings.WebDriver.EnableVNC)
+                        .AddGlobal("enableVideo",
+                                this.Settings.WebDriver.EnableVideo);
+
+                    if (Settings.WebDriver.Headless) {
+                        options.AddArgument("--headless");
+                    }
+                    webDriver = new RemoteWebDriver(
+                        new Uri(Settings.WebDriver.RemoteUri),
+                        options);
+                }
+                else
+                {
+                    throw new Exception("This browser is not supported");
+                }
+                SetWebDriver(webDriver);
             }
 
-            Selene.SetWebDriver(webDriver);
         }
 
         [TearDown]
         public void QuitDriver()
         {
-            if (this.Settings.WebDriver.HoldBrowserOpen) return;
-
-            Selene.GetWebDriver().Quit();
+            if (Settings.NSelene.HoldBrowserOpen) return;
+            GetWebDriver().Quit();
         }
     }
 }

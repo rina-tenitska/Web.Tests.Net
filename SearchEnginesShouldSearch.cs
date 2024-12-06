@@ -12,7 +12,7 @@ namespace Web.Tests
 
             Www.duckduckgo.Search("nselene dotnet");
             Www.duckduckgo.Results.ShouldHaveSizeAtLeast(5)
-                .ShouldHaveText(0, "Consise API to Selenium for .Net");
+                .ShouldHaveText(0, "Consice API to Selenium");
 
             Www.duckduckgo.Results.FollowLink(0);
             Www.github.ShouldBeOn("yashaka/NSelene");
@@ -25,7 +25,7 @@ namespace Web.Tests
 
             Www.ecosia.Search("nselene dotnet");
             Www.ecosia.Results.ShouldHaveSizeAtLeast(5)
-                .ShouldHaveText(0, "Consise API to Selenium for .Net");
+                .ShouldHaveText(0, "Consice API to Selenium");
 
             Www.ecosia.Results.FollowLink(0);
             Www.github.ShouldBeOn("yashaka/NSelene");
