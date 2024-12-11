@@ -198,13 +198,13 @@ dotnet test --logger|-l:nunit export TESTOMATIO=key npx report-xml "/path-to-xml
 or in PowerShell:
 
 ```ps
-dotnet test -l:nunit; $env:TESTOMATIO = "tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621"; npx report-xml "F:/projects/csharp/Web.Tests.Net/TestResults/**.xml" --lang="c#"
+dotnet test -l:nunit; $env:TESTOMATIO = "tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621"; npx report-xml "/path-to-xml-reports/**.xml" --lang="c#"
 ```
 
 You can also set any environment variables for test run:
 
 ```ps
-dotnet test -l:nunit -e context=prod; $env:TESTOMATIO = "tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621"; npx report-xml "F:/projects/csharp/Web.Tests.Net/TestResults/**.xml" --lang="c#"
+dotnet test -l:nunit -e context=prod; $env:TESTOMATIO = "tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621"; npx report-xml "/path-to-xml-reports/**.xml" --lang="c#"
 ```
 
 
