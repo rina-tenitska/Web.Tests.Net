@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@testomatio/reporter": "^1.6.5",
+    "cross-env": "^7.0.3"
+  }
+}
