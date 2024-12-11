@@ -6,6 +6,7 @@ namespace Web.Tests
     public class SearchEnginesShouldSearch : BrowserTest
     {
         [Test]
+        [Category("main")]
         public void Duckduckgo()
         {
             Www.duckduckgo.Open();

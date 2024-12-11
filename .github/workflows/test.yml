@@ -16,14 +16,15 @@ jobs:
           uses: actions/setup-dotnet@v3
           with:
             dotnet-version: ${{ matrix.dotnet-version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: "20"
         - name: Install dependencies
           run: dotnet restore
+        - name: Install testomat.io reporter
+          run: npm install @testomatio/reporter
         - name: Test with dotnet
-          run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-        - name: Upload dotnet test results
-          uses: actions/upload-artifact@v4
-          with:
-            name: dotnet-results-${{ matrix.dotnet-version }}
-            path: TestResults-${{ matrix.dotnet-version }}
-          # Use always() to always run this step to publish test results when there are test failures
-          if: ${{ always() }}
+          run: dotnet test -l:nunit; $env:TESTOMATIO = "tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621"; npx report-xml "F:/projects/csharp/Web.Tests.Net/TestResults/**.xml" --lang="c#"
+          # to set number of parallel subprocesses use flag  -- NUnit.NumberOfTestWorkers=4
+          # to run tests by Category attribute, use flag -- NUnit.Where="cat=main" or --filter TestCategory="main"
+          # make sure to pass all dotnet test properties like --filter and --environment before using -- NUnit properties
