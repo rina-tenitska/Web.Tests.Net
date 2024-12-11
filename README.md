@@ -176,7 +176,7 @@ dotnet test --logger|-l:nunit
 Then, add API key to system variables and import testresults to Testomat.io:
 
 ```bash
-export TESTOMATIO=key npx report-xml "/path-to-xml-reports/*.xml" --lang="c# 
+TESTOMATIO=key npx report-xml "/path-to-xml-reports/*.xml" --lang="c# 
 ```
 
 or in PowerShell:
@@ -192,7 +192,7 @@ $env:TESTOMATIO = "key"; npx report-xml "/path-to-xml-reports/*.xml" --lang="c#
 You can use commands for test run with logging and importing test results sequentially:
 
 ```bash
-dotnet test --logger|-l:nunit export TESTOMATIO=key npx report-xml "/path-to-xml-reports/*.xml" --lang="c#
+dotnet test --logger|-l:nunit TESTOMATIO=key npx report-xml "/path-to-xml-reports/*.xml" --lang="c#
 ```
 
 or in PowerShell:
