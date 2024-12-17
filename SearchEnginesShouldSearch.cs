@@ -16,7 +16,7 @@ namespace Web.Tests
                 .ShouldHaveText(0, "Consice API to Selenium");
 
             Www.duckduckgo.Results.FollowLink(0);
-            Www.github.ShouldBeOn("yashaka/NSelene");
+            Www.github.ShouldBeOn("yashaka/NSelenide");
         }
 
         [Test]
