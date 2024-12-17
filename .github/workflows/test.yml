@@ -25,7 +25,7 @@ jobs:
         - name: Install testomat.io reporter
           run: npm install @testomatio/reporter
         - name: Test with dotnet
-          run: env -S WebDriver:Headless=true dotnet test -l:nunit&& TESTOMATIO=tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621&& npx report-xml "./TestResults/**.xml" --lang="c#"
+          run: env -S WebDriver:Headless=true NSelene:Timeout=8 dotnet test -l:nunit&& TESTOMATIO=tstmt_ZkBAvUO-V5ze-kX5gWitypM0qVqEgrcfDA1733908621&& npx report-xml "./TestResults/**.xml" --lang="c#"
           # to set number of parallel subprocesses use flag  -- NUnit.NumberOfTestWorkers=4
           # to run tests by Category attribute, use flag -- NUnit.Where="cat=main" or --filter TestCategory="main"
           # make sure to pass all dotnet test properties like --filter and --environment before using -- NUnit properties
