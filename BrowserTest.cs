@@ -53,7 +53,7 @@ namespace Web.Tests
             Configuration.BaseUrl = Settings.NSelene.BaseUrl;
             Configuration.Timeout = Settings.NSelene.Timeout;
             Configuration.SetValueByJs = Settings.NSelene.SetValueByJs;
-            
+            Configuration.LogOuterHtmlOnFailure = true;
 
             IWebDriver webDriver;
 
