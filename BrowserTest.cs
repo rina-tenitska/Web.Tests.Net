@@ -61,7 +61,7 @@ namespace Web.Tests
                 if (Settings.WebDriver.BrowserName == "chrome") 
                 {
                     ChromeOptions options = new ChromeOptions();
-                    options.AddArguments("--no-sandbox", "--disable-dev-shm-usage");
+                    options.AddArgument("--remote-debugging-pipe");
                     if (Settings.WebDriver.Headless) 
                     {
                         options.AddArgument("--headless");
