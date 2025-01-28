@@ -61,8 +61,6 @@ namespace Web.Tests
                 if (Settings.WebDriver.BrowserName == "chrome") 
                 {
                     ChromeOptions options = new ChromeOptions();
-                    Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
-                    options.AddArgument($"--user-data-dir={Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}1");
                     if (Settings.WebDriver.Headless) 
                     {
                         options.AddArgument("--headless");
