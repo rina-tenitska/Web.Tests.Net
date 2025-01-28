@@ -61,12 +61,12 @@ namespace Web.Tests
                 if (Settings.WebDriver.BrowserName == "chrome") 
                 {
                     ChromeOptions options = new ChromeOptions();
-                    options.AddExcludedArgument("--user-data-dir");
+                    Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+                    options.AddArgument($"--user-data-dir={Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}");
                     if (Settings.WebDriver.Headless) 
                     {
                         options.AddArgument("--headless");
                     }
-                    Console.WriteLine(options);
                     webDriver = new ChromeDriver(options);
                 }
                 else if (Settings.WebDriver.BrowserName == "firefox")
