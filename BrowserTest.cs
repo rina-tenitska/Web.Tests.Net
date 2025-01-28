@@ -61,6 +61,7 @@ namespace Web.Tests
                 if (Settings.WebDriver.BrowserName == "chrome") 
                 {
                     ChromeOptions options = new ChromeOptions();
+                    options.AddArgument("--no-sandbox");
                     if (Settings.WebDriver.Headless) 
                     {
                         options.AddArgument("--headless");
