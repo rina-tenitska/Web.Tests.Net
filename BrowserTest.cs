@@ -50,6 +50,7 @@ namespace Web.Tests
         [SetUp]
         public void InitDriver()
         {
+            
             Configuration.BaseUrl = Settings.NSelene.BaseUrl;
             Configuration.Timeout = Settings.NSelene.Timeout;
             Configuration.SetValueByJs = Settings.NSelene.SetValueByJs;
@@ -70,10 +71,10 @@ namespace Web.Tests
                 else if (Settings.WebDriver.BrowserName == "firefox")
                 {
                     FirefoxOptions options = new FirefoxOptions();
-                    if (Settings.WebDriver.Headless)
-                    {
+                    // if (Settings.WebDriver.Headless)
+                    // {
                         options.AddArgument("--headless");
-                    }
+                    // }
                     webDriver = new FirefoxDriver(options);
                 }
                 else
