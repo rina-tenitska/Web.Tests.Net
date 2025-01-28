@@ -65,16 +65,17 @@ namespace Web.Tests
                     // if (Settings.WebDriver.Headless) 
                     // {
                         options.AddArgument("--headless");
+                        options.AddArgument("--ignore-certificate-errors");
                     // }
                     webDriver = new ChromeDriver(options);
                 }
                 else if (Settings.WebDriver.BrowserName == "firefox")
                 {
                     FirefoxOptions options = new FirefoxOptions();
-                    // if (Settings.WebDriver.Headless)
-                    // {
+                    if (Settings.WebDriver.Headless)
+                    {
                         options.AddArgument("--headless");
-                    // }
+                    }
                     webDriver = new FirefoxDriver(options);
                 }
                 else
