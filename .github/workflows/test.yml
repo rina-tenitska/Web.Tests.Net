@@ -5,12 +5,14 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ghcr.io/catthehacker/ubuntu:runner-22.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         dotnet-version: ['8.0.x']
 
     steps:
+        - name: Switch to non-root user
+          run: sudo adduser Test && su - Test
         - uses: actions/checkout@v4
         - name: Setup dotnet
           uses: actions/setup-dotnet@v3
