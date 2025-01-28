@@ -5,14 +5,12 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         dotnet-version: ['8.0.x']
 
     steps:
-        - name: Switch to non-root user
-          run: sudo adduser test_user --disabled-password && su - test_user
         - uses: actions/checkout@v4
         - name: Setup dotnet
           uses: actions/setup-dotnet@v3
