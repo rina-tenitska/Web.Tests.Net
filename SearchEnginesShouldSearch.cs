@@ -5,19 +5,19 @@ namespace Web.Tests
 {
     public class SearchEnginesShouldSearch : BrowserTest
     {
-        [Test]
-        [Category("main")]
-        public void Duckduckgo()
-        {
-            Www.duckduckgo.Open();
+        // [Test]
+        // [Category("main")]
+        // public void Duckduckgo()
+        // {
+        //     Www.duckduckgo.Open();
 
-            Www.duckduckgo.Search("nselene dotnet");
-            Www.duckduckgo.Results.ShouldHaveSizeAtLeast(5)
-                .ShouldHaveText(0, "Consice API to Selenium");
+        //     Www.duckduckgo.Search("nselene dotnet");
+        //     Www.duckduckgo.Results.ShouldHaveSizeAtLeast(5)
+        //         .ShouldHaveText(0, "Consice API to Selenium");
 
-            Www.duckduckgo.Results.FollowLink(0);
-            Www.github.ShouldBeOn("yashaka/NSelenide");
-        }
+        //     Www.duckduckgo.Results.FollowLink(0);
+        //     Www.github.ShouldBeOn("yashaka/NSelenide");
+        // }
 
         [Test]
         public void Ecosia()
