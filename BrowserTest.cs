@@ -66,6 +66,7 @@ namespace Web.Tests
                     {
                         options.AddArgument("--headless");
                     }
+                    Console.WriteLine(options);
                     webDriver = new ChromeDriver(options);
                 }
                 else if (Settings.WebDriver.BrowserName == "firefox")
