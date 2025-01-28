@@ -12,7 +12,7 @@ jobs:
 
     steps:
         - name: Switch to non-root user
-          run: sudo adduser test_user && su - test_user
+          run: sudo adduser test_user --disabled-password && su - test_user
         - uses: actions/checkout@v4
         - name: Setup dotnet
           uses: actions/setup-dotnet@v3
