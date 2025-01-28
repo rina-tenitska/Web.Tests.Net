@@ -62,6 +62,7 @@ namespace Web.Tests
                 {
                     ChromeOptions options = new ChromeOptions();
                     options.AddArgument("--remote-debugging-pipe");
+                    options.AddArgument("--no-sandbox");
                     if (Settings.WebDriver.Headless) 
                     {
                         options.AddArgument("--headless");
