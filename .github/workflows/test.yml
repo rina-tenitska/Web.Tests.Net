@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-22.x
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         dotnet-version: ['8.0.x']
