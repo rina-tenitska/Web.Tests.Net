@@ -62,10 +62,10 @@ namespace Web.Tests
                 if (Settings.WebDriver.BrowserName == "chrome") 
                 {
                     ChromeOptions options = new ChromeOptions();
-                    if (Settings.WebDriver.Headless) 
-                    {
+                    // if (Settings.WebDriver.Headless) 
+                    // {
                         options.AddArgument("--headless");
-                    }
+                    // }
                     webDriver = new ChromeDriver(options);
                 }
                 else if (Settings.WebDriver.BrowserName == "firefox")
